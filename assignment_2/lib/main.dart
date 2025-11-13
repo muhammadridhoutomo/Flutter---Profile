@@ -193,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Row(
                             children: [
                               // Image.asset('assets/icon/icon.png'),
-                              Icon(Icons.link, color: gray2, size: 12),
+                              Icon(Icons.link, color: blue, size: 12),
                               const SizedBox(width: 8),
                               Text(
                                 'linkedin.com/in/muhammad_ru',
