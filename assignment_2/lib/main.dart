@@ -196,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Icon(Icons.link, color: gray2, size: 12),
                               const SizedBox(width: 8),
                               Text(
-                                'linkedin.com/in/muhammad_ru)',
+                                'linkedin.com/in/muhammad_ru',
                                 style: regular12.copyWith(color: blue),
                                 // textDirection: TextDecoration.underline,
                               ),
