@@ -532,7 +532,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             itemCount: (imageUrls.length / 4).ceil(), // Calculate the number of pages
                             itemBuilder: (context, pageIndex) {
                               final startIndex = pageIndex * 4;
-                              final endIndex = startIndex + 4 > imageUrls.length ? imageUrls.length : startIndex + 4;
+                              final endIndex = (startIndex + 4 > imageUrls.length) ? imageUrls.length : startIndex + 4;
                               final pageImages = imageUrls.sublist(startIndex, endIndex);
 
                               return GridView.builder(
