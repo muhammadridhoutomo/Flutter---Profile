@@ -43,12 +43,16 @@ class _ProfilePageState extends State<ProfilePage> {
       'assets/images/gerex.JPG',
       'assets/images/alumni.JPG',
       'assets/images/ilits25.JPG',
+      'assets/images/exp.JPG',
+      'assets/images/director.JPG',
+      'assets/images/stravisera.JPG',
+      'assets/images/runner.JPG',
     ];
 
   final List<Hobby> hobbies = [
     Hobby(imageUrl: 'assets/images/fotografi.png', description: 'Karena setiap moment harus diabadikan.'),
     Hobby(imageUrl: 'assets/images/badminton.png', description: 'Apapun gas yang penting sehat.'),
-    Hobby(imageUrl: 'assets/images/money.png', description: 'Pengen jadi kaya jadi harus kerja keras.'),
+    Hobby(imageUrl: 'assets/images/money.png', description: 'Pengen jadi kaya berarti jangan manja.'),
     // Tambahkan hobi lain di sini
   ];
 
@@ -199,6 +203,17 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'linkedin.com/in/muhammad_ru',
                                 style: regular12.copyWith(color: blue),
                                 // textDirection: TextDecoration.underline,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 1),
+                          Row(
+                            children: [
+                              Icon(Icons.location_on_outlined, color: gray1, size: 12),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Surabaya, Indonesia',
+                                style: regular12.copyWith(color: gray1),
                               ),
                             ],
                           )
@@ -507,31 +522,43 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Row(
                           children: [
-                            Text('Pictures', style: bold16),
+                            Text('Memories', style: bold16),
                           ],
                         ),
                         const SizedBox(height: 16),
-                        GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(), 
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // jumlah kolom
-                            crossAxisSpacing: 16, // space antar kolom
-                            mainAxisSpacing: 16, // space antar baris
-                          ),
-                          shrinkWrap: true, // agar tidak penuh
-                          itemCount: imageUrls.length,
-                          itemBuilder: (context, index) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: SizedBox.fromSize(
-                                size: Size.fromRadius(74),
-                                child: Image.asset(
-                                  imageUrls[index],
-                                  fit: BoxFit.cover, // foto akan menyesuaikan ukuran grid
+                        SizedBox(
+                          height: 350, // Provide a fixed height for the PageView
+                          child: PageView.builder(
+                            itemCount: (imageUrls.length / 4).ceil(), // Calculate the number of pages
+                            itemBuilder: (context, pageIndex) {
+                              final startIndex = pageIndex * 4;
+                              final endIndex = startIndex + 4 > imageUrls.length ? imageUrls.length : startIndex + 4;
+                              final pageImages = imageUrls.sublist(startIndex, endIndex);
+
+                              return GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, // jumlah kolom
+                                  crossAxisSpacing: 16, // space antar kolom
+                                  mainAxisSpacing: 16, // space antar baris
                                 ),
-                              ),
-                            );
-                          },
+                                shrinkWrap: true,
+                                itemCount: pageImages.length,
+                                itemBuilder: (context, index) {
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: SizedBox.fromSize(
+                                      size: const Size.fromRadius(74),
+                                      child: Image.asset(
+                                        pageImages[index],
+                                        fit: BoxFit.cover, // foto akan menyesuaikan ukuran grid
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ],
                   ),
